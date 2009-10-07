@@ -27,4 +27,9 @@ class AssetTest < ActiveSupport::TestCase
     a.update_attributes({:ips_attributes => []})
     assert_equal 0, a.ips.size
   end
+  
+  test "Should work with hashes as well as arrays" do
+    a = Asset.create({:name => "blah", :ips_attributes => {"0" => {:id => @ip1.id}}})
+    assert_equal 1, a.ips.size
+  end
 end
