@@ -1,0 +1,10 @@
+<% form_for @asset do |f| %>
+    Name:
+    <%= f.text_field :name %>
+    <br>
+    
+    Ip:
+    <% f.fields_for :ips do |ip| %>
+    <%= ip.collection_select :id, Ip.all, :id, :address, :include_blank => true %>
+    <% end %>    
+<% end %>
