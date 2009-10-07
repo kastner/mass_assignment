@@ -6,6 +6,6 @@ class Asset < ActiveRecord::Base
       ips = ips.sort_by { |index, _| index.to_i }.map { |_, attributes| attributes }
     end
     
-    self.ips = ips.collect {|ip| Ip.find(ip[:id])}
+    self.ips = ips.collect {|ip| Ip.find(ip[:id]) unless ip[:id].blank? }.compact
   end
 end
