@@ -1,4 +1,3 @@
 class Ip < ActiveRecord::Base
-  has_one :assignment
-  has_one :asset, :through => :assignment
+  belongs_to :asset
 end
