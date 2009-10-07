@@ -7,12 +7,12 @@ class AssetTest < ActiveSupport::TestCase
   end
   
   test "Should set an ip" do
-    a = Asset.create({:name => "blah", :assign_ips => [{:id => @ip1.id}]})
+    a = Asset.create({:name => "blah", :ips_attributes => [{:id => @ip1.id}]})
     assert_equal 1, a.ips.size
   end
 
   test "Should set multiple ips" do
-    a = Asset.create({:name => "blah", :assign_ips => [
+    a = Asset.create({:name => "blah", :ips_attributes => [
       {:id => @ip1.id},
       {:id => @ip2.id}
     ]})
@@ -20,11 +20,11 @@ class AssetTest < ActiveSupport::TestCase
   end
   
   test "Should unset ips" do
-    a = Asset.create({:name => "blah", :assign_ips => [
+    a = Asset.create({:name => "blah", :ips_attributes => [
       {:id => @ip1.id},
       {:id => @ip2.id}
     ]})
-    a.update_attributes({:assign_ips => []})
+    a.update_attributes({:ips_attributes => []})
     assert_equal 0, a.ips.size
   end
 end

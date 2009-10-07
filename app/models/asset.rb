@@ -1,7 +1,7 @@
 class Asset < ActiveRecord::Base
   has_many :ips
   
-  def assign_ips=(ips = [])
+  def ips_attributes=(ips = [])
     self.ips = ips.collect {|ip| Ip.find(ip[:id])}
   end
 end
